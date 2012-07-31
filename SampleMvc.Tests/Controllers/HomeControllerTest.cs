@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using ApprovalTests.Asp;
+using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleMvc;
-using SampleMvc.Controllers;
 
 namespace SampleMvc.Tests.Controllers
 {
 	[TestClass]
-	public class HomeControllerTest 
+	[UseReporter(typeof(DiffReporter))]
+	public class HomeControllerTest
 	{
-		
 		[TestMethod]
 		public void About()
 		{
-				}
+			AspApprovals.VerifyUrl("http://localhost:50011/Home/About");
+		}
 	}
 }
