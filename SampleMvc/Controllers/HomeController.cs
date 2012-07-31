@@ -15,6 +15,13 @@ namespace SampleMvc.Controllers
 			return View();
 		}
 
+		public ActionResult Status(String name)
+		{
+
+			var person = new ordersEntities().Customers.Where(c => c.Name == name).SingleOrDefault(); 
+			return View(person);
+		}
+
 		public ActionResult About()
 		{
 			return View();

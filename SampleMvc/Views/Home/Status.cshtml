@@ -1,0 +1,41 @@
+﻿@using SampleMvc
+@model SampleMvc.Customer
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Status</title>
+	</head>
+	<body>
+		<h1>Report for Customer @Model.Name</h1>
+		<h3>Shipped Orders:</h3>
+		@foreach (Invoice invoice in Model.GetShippedInvoices())
+		{
+			<div># @invoice.Number</div>
+		}
+
+		<h3>Partially Shipped Orders:</h3>
+		@foreach (Invoice invoice in Model.GetParitallyShippedInvoices())
+		{
+			<div># @invoice.Number: waiting 
+				@foreach (InvoiceItem item in @invoice.GetUnshippedItems())
+				{
+					@item.Name
+				}
+			</div>
+		}
+			
+			
+		<h3>Unshipped Orders:</h3>
+	@foreach (Invoice invoice in Model.GetUnshippedInvoices())
+		{
+			<div># @invoice.Number: @invoice.GetUnshippedItems().Count() items</div>
+ 		}
+	
+	</body>
+</html>
