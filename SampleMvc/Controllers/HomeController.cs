@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SampleMvc.Controllers
 {
-	public class HomeController : Controller
+	public partial class  HomeController : Controller
 	{
 		public ActionResult Index()
 		{
@@ -17,14 +17,19 @@ namespace SampleMvc.Controllers
 
 		public ActionResult Status(String name)
 		{
+			var person = new ordersEntities().Customers.Where(c => c.Name == name).SingleOrDefault();
+			return Status(person);
+		}
 
-			var person = new ordersEntities().Customers.Where(c => c.Name == name).SingleOrDefault(); 
-			return View(person);
+		private ActionResult Status(Customer person)
+		{
+			return View("Status",person);
 		}
 
 		public ActionResult About()
 		{
 			return View();
 		}
+
 	}
 }
