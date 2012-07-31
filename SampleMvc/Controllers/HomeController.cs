@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ApprovalUtilities.Asp.Mvc;
 
 namespace SampleMvc.Controllers
 {
@@ -23,7 +24,7 @@ namespace SampleMvc.Controllers
 
 		private ActionResult Status(Customer person)
 		{
-			return View("Status",person);
+			return View(person).Explicit();
 		}
 
 		public ActionResult About()
