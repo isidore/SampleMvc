@@ -1,17 +1,18 @@
-﻿using ApprovalTests.Asp;
+﻿using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SampleMvc.Controllers;
 
 namespace SampleMvc.Tests.Controllers
 {
 	[TestClass]
 	[UseReporter(typeof(DiffReporter))]
-	public class HomeControllerTest
+	public class HomeControllerTest : MvcTest
 	{
 		[TestMethod]
 		public void About()
 		{
-			AspApprovals.VerifyUrl("http://localhost:50011/Home/About");
+			MvcApprovals.VerifyMvcPage(new HomeController().About);
 		}
 	}
 }
